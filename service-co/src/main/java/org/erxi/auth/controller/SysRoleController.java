@@ -1,6 +1,7 @@
 package org.erxi.auth.controller;
 
 import org.erxi.auth.service.SysRoleService;
+import org.erxi.common.Result;
 import org.erxi.model.system.SysRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     @GetMapping("findAll")
-    public List<SysRole> findAll() {
-        return sysRoleService.list();
+    public Result<List<SysRole>> findAll() {
+        List<SysRole> roleList = sysRoleService.list();
+        return Result.ok(roleList);
     }
 }
