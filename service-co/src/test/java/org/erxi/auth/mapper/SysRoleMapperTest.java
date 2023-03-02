@@ -1,5 +1,7 @@
 package org.erxi.auth.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.erxi.model.system.SysRole;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 class SysRoleMapperTest {
@@ -56,6 +60,24 @@ class SysRoleMapperTest {
         ArrayList<Long> roleIds = new ArrayList<>();
         roleIds.add(role.getId());
         Assertions.assertFalse(roleIds.isEmpty());
+    }
+
+    @Test
+    public void testQueryWrapper() {
+        SysRole sysRole = insertOne();
+        QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role_code", "role");
+        List<SysRole> sysRoles = sysRoleMapper.selectList(queryWrapper);
+        Assertions.assertFalse(sysRoles.isEmpty());
+    }
+
+    @Test
+    public void testLambdaQueryWrapper() {
+        SysRole sysRole = insertOne();
+        LambdaQueryWrapper<SysRole> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysRole::getRoleCode, "role");
+        List<SysRole> sysRoles = sysRoleMapper.selectList(queryWrapper);
+        Assertions.assertFalse(sysRoles.isEmpty());
     }
 
 }
