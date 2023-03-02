@@ -1,5 +1,7 @@
 package org.erxi.auth.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysRoleService;
 import org.erxi.common.Result;
 import org.erxi.model.system.SysRole;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Api(tags = "角色管理")
 @RestController
 @RequestMapping("/admin/system/sysRole")
 public class SysRoleController {
@@ -17,6 +20,7 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
+    @ApiOperation(value = "获取全部角色列表")
     @GetMapping("findAll")
     public Result<List<SysRole>> findAll() {
         List<SysRole> roleList = sysRoleService.list();
