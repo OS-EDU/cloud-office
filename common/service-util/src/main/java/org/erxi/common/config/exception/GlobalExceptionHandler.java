@@ -25,10 +25,10 @@ public class GlobalExceptionHandler {
     }
 
     // 自定义异常处理
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(CustomException.class)
     @ResponseBody
     public Result error(CustomException e) {
         e.printStackTrace();
-        return Result.fail().message("Custom Exception Handle...");
+        return Result.fail().message(e.getMsg()).code(e.getCode());
     }
 }
