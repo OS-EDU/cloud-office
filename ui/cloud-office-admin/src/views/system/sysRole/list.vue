@@ -13,6 +13,8 @@
           <el-button type="primary" icon="el-icon-search" size="mini" :loading="loading" @click="fetchData()">搜索
           </el-button>
           <el-button icon="el-icon-refresh" size="mini" @click="resetData">重置</el-button>
+          <el-button type="success" icon="el-icon-plus" @click="add">添加</el-button>
+          <el-button class="btn-add" size="mini" @click="batchRemove()">批量删除</el-button>
         </el-row>
       </el-form>
     </div>
@@ -59,10 +61,10 @@
     />
 
     <!-- 工具条 -->
-    <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" @click="add">添 加</el-button>
-      <el-button class="btn-add" size="mini" @click="batchRemove()">批量删除</el-button>
-    </div>
+    <!--    <div class="tools-div">-->
+    <!--      <el-button type="success" icon="el-icon-plus" size="mini" @click="add">添 加</el-button>-->
+    <!--      <el-button class="btn-add" size="mini" @click="batchRemove()">批量删除</el-button>-->
+    <!--    </div>-->
 
     <el-dialog title="添加/修改" :visible.sync="dialogVisible" width="40%">
       <el-form ref="dataForm" :model="sysRole" label-width="150px" size="small" style="padding-right: 40px;">
@@ -144,10 +146,9 @@ export default {
     },
     // 根据 id 查询
     fetchDataById(id) {
-      api.getById(id)
-        .then(response => {
-          this.sysRole = response.data
-        })
+      api.getById(id).then(response => {
+        this.sysRole = response.data
+      })
     },
     // 点击添加弹出框
     add() {

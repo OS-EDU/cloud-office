@@ -29,7 +29,7 @@ public class SysRoleController {
         return Result.ok(roleList);
     }
 
-    @ApiOperation("条件分页查询")
+    @ApiOperation("角色条件分页查询")
     @GetMapping("{page}/{limit}")
     public Result pageQueryRole(@PathVariable Long page, /* 当前页 */
                                 @PathVariable Long limit, /* 每页显示记录数 */
@@ -63,14 +63,14 @@ public class SysRoleController {
         }
     }
 
-    @ApiOperation("根据id查询")
+    @ApiOperation("根据 id 查询角色")
     @GetMapping("get/{id}")
     public Result getById(@PathVariable Long id) {
         SysRole sysRole = sysRoleService.getById(id);
         return Result.ok(sysRole);
     }
 
-    @ApiOperation("修改角色")
+    @ApiOperation("更新角色")
     @PutMapping("update")
     public Result update(@RequestBody SysRole role) {
         boolean is_success = sysRoleService.updateById(role);
@@ -81,7 +81,7 @@ public class SysRoleController {
         }
     }
 
-    @ApiOperation("根据id删除")
+    @ApiOperation("根据 id 删除")
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable Long id) {
         boolean is_success = sysRoleService.removeById(id);
