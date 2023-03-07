@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysMenuService;
 import org.erxi.common.Result;
 import org.erxi.model.system.SysMenu;
+import org.erxi.vo.system.AssignMenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,20 @@ public class SysMenuController {
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable Long id) {
         sysMenuService.removeMenuById(id);
+        return Result.ok();
+    }
+
+    @ApiOperation(value = "根据角色获取菜单")
+    @GetMapping("toAssign/{roleId}")
+    public Result toAssign(@PathVariable Long roleId) {
+        List<SysMenu> list = sysMenuService.findSysMenuByRoleId(roleId);
+        return Result.ok(list);
+    }
+
+    @ApiOperation(value = "给角色分配权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssignMenuVo assignMenuVo) {
+        sysMenuService.doAssign(assignMenuVo);
         return Result.ok();
     }
 }
