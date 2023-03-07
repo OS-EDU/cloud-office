@@ -28,7 +28,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
 
-
     @Override
     public Map<String, Object> findRoleByAdminId(Long userId) {
         // 查询所有的角色

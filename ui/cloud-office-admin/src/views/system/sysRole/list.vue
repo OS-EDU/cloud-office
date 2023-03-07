@@ -55,9 +55,11 @@
       :current-page="page"
       :total="total"
       :page-size="limit"
+      :page-sizes="[5, 10, 20, 30, 40, 50, 100]"
       style="padding: 30px 0; text-align: center;"
-      layout="total, prev, pager, next, jumper"
+      layout="sizes, prev, pager, next, jumper, ->, total, slot"
       @current-change="fetchData"
+      @size-change="changeSize"
     />
 
     <!-- 工具条 -->
@@ -107,6 +109,13 @@ export default {
     this.fetchData()
   },
   methods: { // 操作方法
+
+    changeSize(size) {
+      console.log(size)
+      this.limit = size
+      this.fetchData(1)
+    },
+
     // 选择复选框，把复选框所在行内容传递
     handleSelectionChange(selection) {
       this.selections = selection

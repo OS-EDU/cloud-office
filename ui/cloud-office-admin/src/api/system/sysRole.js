@@ -50,6 +50,21 @@ export default {
       method: 'delete',
       data: idList
     })
+  },
+
+  getRoles(adminId) {
+    return request({
+      url: `${api_name}/toAssign/${adminId}`,
+      method: 'get'
+    })
+  },
+
+  assignRoles(assignRoleVo) {
+    return request({
+      url: `${api_name}/doAssign`,
+      method: 'post',
+      data: assignRoleVo
+    })
   }
 
 }
