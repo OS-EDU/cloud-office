@@ -7,12 +7,14 @@ import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysRoleService;
 import org.erxi.common.Result;
 import org.erxi.model.system.SysRole;
+import org.erxi.vo.system.AssignRoleVo;
 import org.erxi.vo.system.SysRoleQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(tags = "角色管理")
 @RestController
@@ -101,5 +103,19 @@ public class SysRoleController {
         } else {
             return Result.fail();
         }
+    }
+
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.findRoleByAdminId(userId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssignRoleVo assignRoleVo) {
+        sysRoleService.doAssign(assignRoleVo);
+        return Result.ok();
     }
 }
