@@ -51,7 +51,6 @@ export default {
       data: idList
     })
   },
-
   getRoles(adminId) {
     return request({
       url: `${api_name}/toAssign/${adminId}`,

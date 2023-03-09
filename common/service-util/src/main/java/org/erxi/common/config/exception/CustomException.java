@@ -1,7 +1,7 @@
 package org.erxi.common.config.exception;
 
 import lombok.Data;
-import org.erxi.common.ResultCodeEnum;
+import org.erxi.common.result.ResultCodeEnum;
 
 @Data
 public class CustomException extends RuntimeException {

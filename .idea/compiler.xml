@@ -13,10 +13,13 @@
         <module name="service-co" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="service-oa" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cloud-office" options="-parameters" />
+      <module name="cloud-office" options="" />
       <module name="common-util" options="-parameters" />
       <module name="model" options="-parameters" />
       <module name="service-co" options="-parameters" />

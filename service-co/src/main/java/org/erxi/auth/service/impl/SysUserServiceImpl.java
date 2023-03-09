@@ -2,14 +2,22 @@ package org.erxi.auth.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.erxi.auth.mapper.SysUserMapper;
+import org.erxi.auth.service.SysMenuService;
 import org.erxi.auth.service.SysUserService;
 import org.erxi.model.system.SysUser;
+import org.erxi.vo.system.RouterVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
+    @Autowired
     private SysUserMapper sysUserMapper;
 
     @Transactional

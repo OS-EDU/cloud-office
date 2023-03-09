@@ -3,6 +3,7 @@ package org.erxi.auth.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.erxi.model.system.SysMenu;
 import org.erxi.vo.system.AssignMenuVo;
+import org.erxi.vo.system.RouterVo;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface SysMenuService extends IService<SysMenu> {
     List<SysMenu> findSysMenuByRoleId(Long roleId);
 
     void doAssign(AssignMenuVo assignMenuVo);
+
+    List<RouterVo> findUserMenuListByUserId(Long userId);
+
+    List<String> findUserPermsByUserId(Long userId);
 }

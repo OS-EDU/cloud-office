@@ -1,4 +1,4 @@
-package org.erxi.common;
+package org.erxi.common.result;
 
 import lombok.Getter;
 
