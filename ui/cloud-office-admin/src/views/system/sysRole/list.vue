@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="角色名称">
-              <el-input style="width: 100%" v-model="searchObj.roleName" placeholder="角色名称"></el-input>
+              <el-input v-model="searchObj.roleName" style="width: 100%" placeholder="角色名称"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -26,14 +26,16 @@
       stripe
       border
       style="width: 100%;margin-top: 10px;"
-      @selection-change="handleSelectionChange">
+      @selection-change="handleSelectionChange"
+    >
 
       <el-table-column type="selection"/>
 
       <el-table-column
         label="序号"
         width="70"
-        align="center">
+        align="center"
+      >
         <template slot-scope="scope">
           {{ (page - 1) * limit + scope.$index + 1 }}
         </template>
@@ -44,8 +46,9 @@
       <el-table-column prop="createTime" label="创建时间" width="160"/>
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" title="修改"/>
-          <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" title="删除"/>
+          <el-button type="primary" icon="el-icon-edit" size="mini" title="修改" @click="edit(scope.row.id)"/>
+          <el-button type="danger" icon="el-icon-delete" size="mini" title="删除" @click="removeDataById(scope.row.id)"/>
+          <el-button type="warning" icon="el-icon-baseball" size="mini" title="分配权限" @click="showAssignAuth(scope.row)"/>
         </template>
       </el-table-column>
     </el-table>
@@ -78,8 +81,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false" size="small" icon="el-icon-refresh-right">取 消</el-button>
-        <el-button type="primary" icon="el-icon-check" @click="saveOrUpdate()" size="small">确 定</el-button>
+        <el-button size="small" icon="el-icon-refresh-right" @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" icon="el-icon-check" size="small" @click="saveOrUpdate()">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -105,7 +108,7 @@ export default {
       dialogVisible: false // 是否弹框
     }
   },
-  created() { //渲染之前执行
+  created() { // 渲染之前执行
     this.fetchData()
   },
   methods: { // 操作方法
@@ -124,7 +127,7 @@ export default {
     // 批量删除
     batchRemove() {
       // 判断
-      if (this.selections.length == 0) {
+      if (this.selections.length === 0) {
         this.$message.warning('请选择要删除的记录！')
         return
       }
@@ -139,7 +142,7 @@ export default {
         this.selections.forEach(item => {
           var id = item.id
           idList.push(id)
-        });
+        })
         return api.batchRemove(idList)
       }).then(response => {
         this.$message.success(response.message)
@@ -210,7 +213,6 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        // 调用
         return api.removeById(id)
       }).then(response => {
         // 刷新页面
@@ -218,6 +220,10 @@ export default {
         // 提示信息
         this.$message.success(response.message || '删除成功')
       })
+    },
+    // 分配权限
+    showAssignAuth(row) {
+      this.$router.push('/system/assignAuth?id=' + row.id + '&roleName=' + row.roleName)
     }
   }
 }
