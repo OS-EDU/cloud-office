@@ -1,6 +1,11 @@
 server:
   port: 8800
 
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+  mapper-locations: classpath:org/erxi/*/mapper/xml/*.xml
+
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource

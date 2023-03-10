@@ -1,4 +1,4 @@
-package org.erxi.common;
+package org.erxi.common.result;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysRoleService;
-import org.erxi.common.Result;
+import org.erxi.common.result.Result;
 import org.erxi.model.system.SysRole;
 import org.erxi.vo.system.AssignRoleVo;
 import org.erxi.vo.system.SysRoleQueryVo;

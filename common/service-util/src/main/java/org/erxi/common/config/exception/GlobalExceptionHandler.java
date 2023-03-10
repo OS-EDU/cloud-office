@@ -1,6 +1,6 @@
 package org.erxi.common.config.exception;
 
-import org.erxi.common.Result;
+import org.erxi.common.result.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

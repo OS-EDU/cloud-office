@@ -3,7 +3,7 @@ package org.erxi.auth.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysMenuService;
-import org.erxi.common.Result;
+import org.erxi.common.result.Result;
 import org.erxi.model.system.SysMenu;
 import org.erxi.vo.system.AssignMenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
