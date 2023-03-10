@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.erxi.auth.service.SysUserService;
 import org.erxi.common.result.Result;
+import org.erxi.common.utils.MD5;
 import org.erxi.model.system.SysUser;
 import org.erxi.vo.system.SysUserQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,12 +55,12 @@ public class SysUserController {
     @ApiOperation("添加用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
-        boolean is_success = sysUserService.save(user);
-        if (is_success) {
-            return Result.ok();
-        } else {
-            return Result.fail();
-        }
+        //密码进行加密，使用MD5
+        String passwordMD5 = MD5.encrypt(user.getPassword());
+        user.setPassword(passwordMD5);
+
+        sysUserService.save(user);
+        return Result.ok();
     }
 
     @ApiOperation("根据 id 查询用户")

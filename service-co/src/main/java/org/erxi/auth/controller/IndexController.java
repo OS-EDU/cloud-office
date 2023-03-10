@@ -8,6 +8,7 @@ import org.erxi.auth.service.SysUserService;
 import org.erxi.common.config.exception.CustomException;
 import org.erxi.common.jwt.JwtHelper;
 import org.erxi.common.result.Result;
+import org.erxi.common.utils.MD5;
 import org.erxi.model.system.SysUser;
 import org.erxi.vo.system.LoginVo;
 import org.erxi.vo.system.RouterVo;
@@ -48,7 +49,7 @@ public class IndexController {
 
         String password_db = sysUser.getPassword(); // 当前获取的密码为数据库中的密码
 
-        String password_input = loginVo.getPassword();
+        String password_input = MD5.encrypt(loginVo.getPassword());
 
         if (!password_input.equals(password_db)) {
             throw new CustomException(201, "密码错误");

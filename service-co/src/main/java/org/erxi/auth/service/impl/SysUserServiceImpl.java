@@ -1,5 +1,6 @@
 package org.erxi.auth.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.erxi.auth.mapper.SysUserMapper;
 import org.erxi.auth.service.SysMenuService;
@@ -30,5 +31,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             sysUser.setStatus(0);
         }
         this.updateById(sysUser);
+    }
+
+    @Override
+    public SysUser getUserByUsername(String username) {
+        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysUser::getUsername, username);
+        SysUser sysUser = sysUserMapper.selectOne(wrapper);
+        return sysUser;
     }
 }
