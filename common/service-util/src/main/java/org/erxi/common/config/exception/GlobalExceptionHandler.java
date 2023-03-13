@@ -1,6 +1,8 @@
 package org.erxi.common.config.exception;
 
 import org.erxi.common.result.Result;
+import org.erxi.common.result.ResultCodeEnum;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,5 +32,14 @@ public class GlobalExceptionHandler {
     public Result error(CustomException e) {
         e.printStackTrace();
         return Result.fail().message(e.getMsg()).code(e.getCode());
+    }
+
+    /**
+     * spring security 异常
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public Result error(AccessDeniedException e) throws AccessDeniedException {
+        return Result.fail().code(205).message("没有操作权限");
     }
 }
